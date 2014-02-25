@@ -23,3 +23,12 @@ class EmpresaSpec(unittest.TestCase):
 		empresa.nomefantasia |should| equal_to("SuperBom")
 		empresa.telefonesede |should| equal_to("233434")
 		empresa.listadeestabelecimento |should| equal_to([])
+		
+class CriticoSpec(unittest.TestCase):
+	def it_creates_a_critico_object(self):
+		critico = Critico("001","Matteus Souza", "Critico", "email@fake", [])
+		critico.uid |should| equal_to("001")
+		critico.nome |should| equal_to("Matteus Souza")
+		critico.cargo |should| equal_to("Critico")
+		critico.email |should| equal_to("email@fake")
+		critico.listaderesenha |should| equal_to([])		

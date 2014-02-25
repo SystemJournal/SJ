@@ -18,3 +18,11 @@ class Empresa:
 		self.nomefantasia = nomefantasia
 		self.telefonesede = telefonesede
 		self.listadeestabelecimento = listadeestabelecimento
+		
+class Critico:
+	def __init__(self, uid, nome, cargo, email, listaderesenha=[]):
+		self.uid = uid
+		self.nome = nome
+		self.cargo = cargo
+		self.email = email
+		self.listaderesenha = listaderesenha
