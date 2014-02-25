@@ -12,3 +12,14 @@ class UsuarioSpec(unittest.TestCase):
         usuario.cpf |should| equal_to("122323")
         usuario.email |should| equal_to("marcoemailfake@emai.com")
         usuario.listaDeAvaliacao |should| equal_to([])
+
+class EmpresaSpec(unittest.TestCase):
+	def it_creates_a_empresa_object(self):
+		empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+		empresa.uid |should| equal_to("001")
+		empresa.cnpj |should| equal_to("928329")
+		empresa.diretorresponsavel |should| equal_to("Paulo Tobias")
+		empresa.razaosocial |should| equal_to("Superbom")
+		empresa.nomefantasia |should| equal_to("SuperBom")
+		empresa.telefonesede |should| equal_to("233434")
+		empresa.listadeestabelecimento |should| equal_to([])
