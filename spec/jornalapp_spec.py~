@@ -1,0 +1,7 @@
+#coding: utf-8
+import unittest
+from should_dsl import should
+from jornalapp import *
+
+
+
