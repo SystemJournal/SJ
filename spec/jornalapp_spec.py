@@ -59,3 +59,14 @@ class AvaliacaoSpec(unittest.TestCase):
         avaliacao.precoTotal |should| equal_to(233)
         avaliacao.usuario |should| equal_to(usuario)
         avaliacao.estabelecimento |should| equal_to(estabelecimento)
+        
+class ResenhaSpec(unittest.TestCase):
+	def it_creates_a_resenha_object(self):
+		critico = Critico("001","Matteus Souza", "Critico", "email@fake", [])
+		empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+		estabelecimento = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+		resenha = Resenha("001", "Escrevendo um texto aqui", critico, estabelecimento)
+		resenha.uid |should| equal_to("001")
+		resenha.resenha |should| equal_to("Escrevendo um texto aqui")
+		resenha.critico|should| equal_to(critico)
+		resenha.estabelecimento |should| equal_to(estabelecimento)

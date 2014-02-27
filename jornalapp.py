@@ -46,3 +46,11 @@ class Avaliacao:
 		self.precoTotal = precoTotal
 		self.usuario = usuario
 		self.estabelecimento = estabelecimento
+		
+class Resenha:
+	def __init__(self, uid, resenha, critico, estabelecimento):
+		self.uid = uid
+		self.resenha = resenha
+		self.critico = critico
+		self.estabelecimento = estabelecimento
+
