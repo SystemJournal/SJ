@@ -26,3 +26,23 @@ class Critico:
 		self.cargo = cargo
 		self.email = email
 		self.listaderesenha = listaderesenha
+
+class Estabelecimento:
+	def __init__(self, uid, endereco, gerenteresponsavel, ramo, telefone, empresa, listadeinformacaodevisita=[], listaderesenha=[]):
+		self.uid = uid
+		self.endereco = endereco
+		self.gerenteresponsavel = gerenteresponsavel
+		self.ramo = ramo
+		self.telefone = telefone
+		self.empresa = empresa
+		self.listadeinformacaodevisita = listadeinformacaodevisita
+		self.listaderesenha = listaderesenha
+
+class Avaliacao:
+    def __init__(self, uid, alimentosConsumidos, nota, precoTotal, usuario, estabelecimento):
+		self.uid = uid
+		self.alimentosConsumidos = alimentosConsumidos 
+		self.nota = nota
+		self.precoTotal = precoTotal
+		self.usuario = usuario
+		self.estabelecimento = estabelecimento
