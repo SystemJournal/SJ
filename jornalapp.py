@@ -1,12 +1,18 @@
 #coding: utf-8
 
 class Usuario:
-	def __init__(self, uid, nome, cpf, email, listaDeAvaliacao=[]):
+    def __init__(self, uid, nome, cpf, email, listaDeAvaliacao=[]):
 		self.uid = uid
 		self.nome = nome
 		self.cpf = cpf
 		self.email = email
 		self.listaDeAvaliacao = listaDeAvaliacao
+    
+    def inserirAvaliacao(self, avaliacao):
+        self.listaDeAvaliacao.append(avaliacao)
+	
+    def verificarAvaliacao(self, avaliacao):
+        return avaliacao in self.listaDeAvaliacao
 
 class Empresa:
 	def __init__(self, uid, cnpj, diretorresponsavel, razaosocial, nomefantasia, telefonesede, listadeestabelecimento=[]):
@@ -32,6 +38,12 @@ class Critico:
 		self.cargo = cargo
 		self.email = email
 		self.listaderesenha = listaderesenha
+	
+	def inserirResenha(self, resenha):
+		self.listaderesenha.append(resenha)
+
+	def verificarResenha(self, resenha):
+		return resenha in self.listaderesenha
 
 class Estabelecimento:
 	def __init__(self, uid, endereco, gerenteresponsavel, ramo, telefone, empresa, listaDeAvaliacao=[], listaderesenha=[]):
