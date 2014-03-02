@@ -23,6 +23,18 @@ class EmpresaSpec(unittest.TestCase):
 		empresa.nomefantasia |should| equal_to("SuperBom")
 		empresa.telefonesede |should| equal_to("233434")
 		empresa.listadeestabelecimento |should| equal_to([])
+	def it_inserir_lista_estabelecimento_(self):
+		empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+		estabelecimento = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+		empresa.inserirEstabelecimento(estabelecimento)
+		(estabelecimento in empresa.listadeestabelecimento) |should| equal_to(True)
+
+	def it_verificar_lista_estabelecimento_(self):
+		empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+		estabelecimento = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+		empresa.inserirEstabelecimento(estabelecimento)
+		empresa.verificarEstabelecimento(estabelecimento) |should| equal_to(True)
+
 		
 class CriticoSpec(unittest.TestCase):
 	def it_creates_a_critico_object(self):
@@ -34,18 +46,46 @@ class CriticoSpec(unittest.TestCase):
 		critico.listaderesenha |should| equal_to([])		
 
 class EstabelecimentoSpec(unittest.TestCase):
+    def it_creates_a_estabelecimento_object(self):
+        empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+        estabelecimento = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        estabelecimento.uid |should| equal_to("001")
+        estabelecimento.endereco |should| equal_to("Centro")
+        estabelecimento.gerenteresponsavel |should| equal_to("Jaum")
+        estabelecimento.ramo |should| equal_to("FastFood")
+        estabelecimento.telefone |should| equal_to("232312")
+        estabelecimento.empresa |should| equal_to(empresa)
+        estabelecimento.listaDeAvaliacao |should| equal_to([])
+        estabelecimento.listaderesenha |should| equal_to([])
+    def it_inserir_lista_resenha(self):
+        critico = Critico("001","Matteus Souza", "Critico", "email@fake", [])
+        empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+        estabelecimento = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        resenha = Resenha("001", "Escrevendo um texto aqui", critico, estabelecimento)
+        estabelecimento.inserirResenha(resenha)
+        (resenha in estabelecimento.listaderesenha) |should| equal_to(True)
+    def it_verificar_lista_resenha(self):
+        critico = Critico("001","Matteus Souza", "Critico", "email@fake", [])
+        empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+        estabelecimento = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        resenha = Resenha("001", "Escrevendo um texto aqui", critico, estabelecimento)
+        estabelecimento.inserirResenha(resenha)
+        estabelecimento.verificarResenha(resenha) |should| equal_to(True)
 
-	def it_creates_a_estabelecimento_object(self):
-		empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
-		estabelecimento = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
-		estabelecimento.uid |should| equal_to("001")
-		estabelecimento.endereco |should| equal_to("Centro")
-		estabelecimento.gerenteresponsavel |should| equal_to("Jaum")
-		estabelecimento.ramo |should| equal_to("FastFood")
-		estabelecimento.telefone |should| equal_to("232312")
-		estabelecimento.empresa |should| equal_to(empresa)
-		estabelecimento.listadeinformacaodevisita |should| equal_to([])
-		estabelecimento.listaderesenha |should| equal_to([])
+    def it_inserir_lista_avaliacao(self):
+        empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+        estabelecimento = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        usuario = Usuario("001","Marcos Menna","122323","marcoemailfake@emai.com",[])
+        avaliacao = Avaliacao("001","Pao com Alho",5,233, usuario, estabelecimento)
+        estabelecimento.inserirAvaliacao(avaliacao)
+        (avaliacao in estabelecimento.listaDeAvaliacao) |should| equal_to(True)
+    def it_verificar_lista_avaliacao(self):
+        empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+        estabelecimento = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        usuario = Usuario("001","Marcos Menna","122323","marcoemailfake@emai.com",[])
+        avaliacao = Avaliacao("001","Pao com Alho",5,233, usuario, estabelecimento)
+        estabelecimento.inserirAvaliacao(avaliacao)
+        estabelecimento.verificarAvaliacao(avaliacao) |should| equal_to(True)
 
 class AvaliacaoSpec(unittest.TestCase):
     def it_creates_a_avaliacao_object(self):

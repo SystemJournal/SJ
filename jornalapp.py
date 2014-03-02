@@ -18,6 +18,12 @@ class Empresa:
 		self.nomefantasia = nomefantasia
 		self.telefonesede = telefonesede
 		self.listadeestabelecimento = listadeestabelecimento
+
+	def inserirEstabelecimento(self, estabelecimento):
+		self.listadeestabelecimento.append(estabelecimento)
+	
+	def verificarEstabelecimento(self, estabelecimento):
+		return estabelecimento in self.listadeestabelecimento
 		
 class Critico:
 	def __init__(self, uid, nome, cargo, email, listaderesenha=[]):
@@ -28,16 +34,27 @@ class Critico:
 		self.listaderesenha = listaderesenha
 
 class Estabelecimento:
-	def __init__(self, uid, endereco, gerenteresponsavel, ramo, telefone, empresa, listadeinformacaodevisita=[], listaderesenha=[]):
+	def __init__(self, uid, endereco, gerenteresponsavel, ramo, telefone, empresa, listaDeAvaliacao=[], listaderesenha=[]):
 		self.uid = uid
 		self.endereco = endereco
 		self.gerenteresponsavel = gerenteresponsavel
 		self.ramo = ramo
 		self.telefone = telefone
 		self.empresa = empresa
-		self.listadeinformacaodevisita = listadeinformacaodevisita
+		self.listaDeAvaliacao = listaDeAvaliacao
 		self.listaderesenha = listaderesenha
 
+	def inserirResenha(self, resenha):
+		self.listaderesenha.append(resenha)
+
+	def verificarResenha(self, resenha):
+		return resenha in self.listaderesenha
+
+	def inserirAvaliacao(self, avaliacao):
+		self.listaDeAvaliacao.append(avaliacao)
+
+	def verificarAvaliacao(self, avaliacao):
+		return avaliacao in self.listaDeAvaliacao
 class Avaliacao:
     def __init__(self, uid, alimentosConsumidos, nota, precoTotal, usuario, estabelecimento):
 		self.uid = uid
