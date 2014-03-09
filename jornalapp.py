@@ -109,9 +109,18 @@ class Estabelecimento:
 
 	def inserirAvaliacao(self, avaliacao):
 		self.listaDeAvaliacao.append(avaliacao)
-
+	
 	def verificarAvaliacao(self, avaliacao):
-		return avaliacao in self.listaDeAvaliacao
+	    return avaliacao in self.listaDeAvaliacao
+	
+	def mediaDeNova(self):
+	    total = 0
+	    divisor = 0
+	    for x in xrange(len(self.listaDeAvaliacao)):
+	        total += self.listaDeAvaliacao[x].nota
+	        divisor +=1
+	    return total / divisor
+
 class Avaliacao:
     def __init__(self, uid, alimentosConsumidos, nota, precoTotal, usuario, estabelecimento):
 		self.uid = uid
