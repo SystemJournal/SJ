@@ -12,6 +12,18 @@ class UsuarioSpec(unittest.TestCase):
         usuario.cpf |should| equal_to("122323")
         usuario.email |should| equal_to("marcoemailfake@emai.com")
         usuario.listaDeAvaliacao |should| equal_to([])
+
+    def it__consumo_media_test(self):
+        empresa1 = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+        estabelecimento1 = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa1, [], [])
+        estabelecimento2 = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa1, [], [])
+        usuarioTest = Usuario("001","Marcos Menna","122323","marcoemailfake@emai.com",[])
+        avaliacaoTu = Avaliacao("001","Pao com Alho",5, 15.0, usuarioTest, estabelecimento1)
+        avaliacaoTd = Avaliacao("002","Pao com Manteiga",1, 25.0, usuarioTest, estabelecimento2)
+        usuarioTest.inserirAvaliacao(avaliacaoTu)
+        usuarioTest.inserirAvaliacao(avaliacaoTd)
+        usuarioTest.verificarMediaDeConsumo() |should| equal_to(20.0)
+
     
     def it_inserir_lista_object(self):
         empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
