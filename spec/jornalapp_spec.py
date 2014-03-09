@@ -150,6 +150,7 @@ class EstabelecimentoSpec(unittest.TestCase):
         estabelecimento.empresa |should| equal_to(empresa)
         estabelecimento.listaDeAvaliacao |should| equal_to([])
         estabelecimento.listaderesenha |should| equal_to([])
+
     def it_inserir_lista_resenha(self):
         critico = Critico("001","Matteus Souza", "Critico", "email@fake", [])
         empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
@@ -179,6 +180,17 @@ class EstabelecimentoSpec(unittest.TestCase):
         avaliacao = Avaliacao("001","Pao com Alho",5,233, usuario, estabelecimento)
         estabelecimento.inserirAvaliacao(avaliacao)
         estabelecimento.verificarAvaliacao(avaliacao) |should| equal_to(True)
+
+    def it_verificar_media_do_estabelecimento(self):
+        empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+        estabelecimento = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        usuario = Usuario("001","Marcos Menna","122323","marcoemailfake@emai.com",[])
+        avaliacaoUm = Avaliacao("001","Pao com Alho",4,233, usuario, estabelecimento)
+        avaliacaoDois = Avaliacao("002","Pao com Manteiga",4,233, usuario, estabelecimento)
+        estabelecimento.inserirAvaliacao(avaliacaoUm)
+        estabelecimento.inserirAvaliacao(avaliacaoDois)
+        estabelecimento.mediaDeNova() |should| equal_to(4)
+
 
 class AvaliacaoSpec(unittest.TestCase):
     def it_creates_a_avaliacao_object(self):
