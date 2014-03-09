@@ -52,7 +52,41 @@ class EmpresaSpec(unittest.TestCase):
         empresa.inserirEstabelecimento(estabelecimento)
         empresa.verificarEstabelecimento(estabelecimento) |should| equal_to(True)
 
-    
+    def it_verificar_media_empresa(self):
+        empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+        estabelecimentoUm = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        usuario = Usuario("001","Marcos Menna","122323","marcoemailfake@emai.com",[])
+        avaliacaoUm = Avaliacao("001","Pao com Alho",5,233, usuario, estabelecimentoUm)
+        avaliacaoDois = Avaliacao("002","Pao com Manteiga",1,233, usuario, estabelecimentoUm)
+        estabelecimentoUm.inserirAvaliacao(avaliacaoUm)
+        estabelecimentoUm.inserirAvaliacao(avaliacaoDois)
+        estabelecimentoDois = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        avaliacaoTres = Avaliacao("001","Pao com Queito",2,233, usuario, estabelecimentoDois)
+        avaliacaoQuatro = Avaliacao("002","Pao com Cebola",4,233, usuario, estabelecimentoDois)
+        estabelecimentoDois.inserirAvaliacao(avaliacaoTres)
+        estabelecimentoDois.inserirAvaliacao(avaliacaoQuatro) 
+        empresa.inserirEstabelecimento(estabelecimentoUm)
+        empresa.inserirEstabelecimento(estabelecimentoDois)
+        empresa.mediaDaEmpresa() |should| equal_to(3)
+
+    def it_verificar_estabelecimento_acima_media(self):
+        empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+        estabelecimentoUm = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        usuario = Usuario("001","Marcos Menna","122323","marcoemailfake@emai.com",[])
+        avaliacaoUm = Avaliacao("001","Pao com Alho",5,233, usuario, estabelecimentoUm)
+        avaliacaoDois = Avaliacao("002","Pao com Manteiga",8,233, usuario, estabelecimentoUm)
+        estabelecimentoUm.inserirAvaliacao(avaliacaoUm)
+        estabelecimentoUm.inserirAvaliacao(avaliacaoDois)
+        estabelecimentoDois = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        avaliacaoTres = Avaliacao("001","Pao com Queito",2,233, usuario, estabelecimentoDois)
+        avaliacaoQuatro = Avaliacao("002","Pao com Cebola",4,233, usuario, estabelecimentoDois)
+        estabelecimentoDois.inserirAvaliacao(avaliacaoTres)
+        estabelecimentoDois.inserirAvaliacao(avaliacaoQuatro) 
+        empresa.inserirEstabelecimento(estabelecimentoUm)
+        empresa.inserirEstabelecimento(estabelecimentoDois)
+        lista = []
+        lista.append(estabelecimentoUm)
+        empresa.estabelecimentoAcimadaMedia() |should| equal_to(lista)
 
 		
 class CriticoSpec(unittest.TestCase):
@@ -79,6 +113,17 @@ class CriticoSpec(unittest.TestCase):
         resenha = Resenha("001", "Escrevendo um texto aqui", critico, estabelecimento)
         critico.inserirResenha(resenha)
         critico.verificarResenha(resenha) |should| equal_to(True)
+
+    def it_verificar_total_de_resenhas(self):
+        critico = Critico("001","Matteus Souza", "Critico", "email@fake", [])
+        empresa = Empresa("001", "928329", "Paulo Tobias", "Superbom", "SuperBom", "233434", [])
+        estabelecimentoUm = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        estabelecimentoDois = Estabelecimento("001", "Centro", "Jaum", "FastFood", "232312", empresa, [], [])
+        resenhaUm = Resenha("001", "Escrevendo um texto aqui",critico,estabelecimentoUm)
+        resenhaDois = Resenha("001", "Escrevendo um texto aqui",critico,estabelecimentoDois)
+        critico.inserirResenha(resenhaUm)
+        critico.inserirResenha(resenhaDois)
+        critico.totalResenhas() |should| equal_to(2)
 
     
 class EstabelecimentoSpec(unittest.TestCase):

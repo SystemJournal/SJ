@@ -27,6 +27,9 @@ class Critico:
 
     def verificarResenha(self, resenha):
 	    return resenha in self.listaderesenha
+    #contar total de resenhas feita por um critito até hoje
+    def totalResenhas(self):
+        return (len(self.listaderesenha))
 
 
 class Empresa:
@@ -45,6 +48,35 @@ class Empresa:
 
     def verificarEstabelecimento(self, estabelecimento):
         return estabelecimento in self.listadeestabelecimento
+
+       #verificar media total da empresa ou seja, é a média da média de cada estabelecimento cadastrado gerando uma media geral da empresa
+
+    def mediaDaEmpresa(self):
+        total = 0
+        divisor = 0
+        for x in xrange(len(self.listadeestabelecimento)):
+            for y in xrange(len(self.listadeestabelecimento[x].listaDeAvaliacao)):
+                total += self.listadeestabelecimento[x].listaDeAvaliacao[y].nota
+                divisor +=1    
+        return total / divisor
+
+    #verificar empresa acima da média
+    def estabelecimentoAcimadaMedia(self):
+        listaAcimadaMedia=[]
+        media = 0
+        total = 0
+        divisor = 0
+        media = self.mediaDaEmpresa()
+        for x in xrange(len(self.listadeestabelecimento)):
+            for y in xrange(len(self.listadeestabelecimento[x].listaDeAvaliacao)):
+                total += self.listadeestabelecimento[x].listaDeAvaliacao[y].nota
+                divisor +=1
+            if (total/divisor > media):
+                listaAcimadaMedia.append(self.listadeestabelecimento[x])
+                print(self.listadeestabelecimento[x])
+            total = 0
+            divisor = 0
+        return listaAcimadaMedia
  
 
 class Estabelecimento:
