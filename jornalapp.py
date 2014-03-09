@@ -13,6 +13,17 @@ class Usuario:
 	
     def verificarAvaliacao(self, avaliacao):
         return avaliacao in self.listaDeAvaliacao
+    #verifica a media geral do usuario, quanto ele gasta em media quando sai a noite?
+
+    def verificarMediaDeConsumo(self):
+        total = 0.0
+        divisor = 0.0
+        for x in xrange(len(self.listaDeAvaliacao)):
+            total += self.listaDeAvaliacao[x].precoTotal
+            print total
+            divisor += 1.0
+            media = total / divisor
+        return media
 
 class Critico:
     def __init__(self, uid, nome, cargo, email, listaderesenha=[]):
